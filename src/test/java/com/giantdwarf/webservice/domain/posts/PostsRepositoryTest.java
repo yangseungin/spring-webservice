@@ -1,5 +1,10 @@
 package com.giantdwarf.webservice.domain.posts;
 
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
+
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.junit.After;
@@ -11,9 +16,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import com.giantdwarf.webservice.domain.post.Posts;
 import com.giantdwarf.webservice.domain.post.PostsRepository;
-
-import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -42,4 +44,30 @@ public class PostsRepositoryTest {
 		assertThat(posts.getTitle(), is("테스트 게시글"));
 		assertThat(posts.getContent(), is("테스트 본문"));
 	}
+	
+	@Test
+    public void BaseTimeEntity_등록 () {
+        //given
+        LocalDateTime now = LocalDateTime.now();
+        postsRepository.save(Posts.builder()
+                .title("테스트 게시글")
+                .content("테스트 본문")
+                .author("rhfpdk92@naver.com")
+                .build());
+        //when
+        List<Posts> postsList = postsRepository.findAll();
+
+        //then
+        Posts posts = postsList.get(0);
+        assertTrue(posts.getCreatedDate().isAfter(now));
+        assertTrue(posts.getModifiedDate().isAfter(now));
+    }
+	
+	
+	
+	
+	
+	
+	
+	
 }
