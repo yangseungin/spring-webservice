@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+import com.giantdwarf.webservice.domain.BaseTimeEntity;
+
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -17,7 +19,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)		
 @Getter												
 @Entity												
-public class Posts {
+public class Posts extends BaseTimeEntity{
 
 	//@Id: 해당 테이블의 PK필드를 나타
 	//@GeneratedValue: //원하는 키 생성 전략을 선택.(IDENTITY, SEQUENCE, TABLE, AUTO), 기본값은 AUTO로 mysql의 auto_increment와 같이 자동증가하는 정수값, 스프링부트2.0에선 옵션을 추가해야만 자동으로 증가
