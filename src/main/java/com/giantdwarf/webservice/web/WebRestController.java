@@ -16,15 +16,15 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class WebRestController {
 
-	private PostsService PostsService;
+	private PostsService postsService;
 	
     @GetMapping("/hello")
     public String hello() {
         return "HelloWorld";
     }
     @PostMapping("/posts")
-    public void savePosts(@RequestBody PostsSaveRequestDto dto) {
-    	PostsService.save(dto);
+    public Long savePosts(@RequestBody PostsSaveRequestDto dto) {
+    	return postsService.save(dto);
     	
     }
 }
