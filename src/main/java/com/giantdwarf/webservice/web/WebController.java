@@ -1,7 +1,10 @@
 package com.giantdwarf.webservice.web;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+
+import com.giantdwarf.webservice.service.PostsService;
 
 import lombok.AllArgsConstructor;
 
@@ -14,8 +17,11 @@ public class WebController {
 	 * (prefix: src/main/resources/templates, suffix: .hbs) 즉 main -> src/main/resources/templates/main.hbs로 전환되어 View Resolver가 처리하게
 	 */
 	
+	private PostsService postsService;
+	
 	@GetMapping("/")
-	public String main() {
+	public String main(Model model) {
+		model.addAttribute("posts", postsService.findAllDesc());
 		return "main";
 	}
 
