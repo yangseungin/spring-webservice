@@ -3,6 +3,7 @@ package com.giantdwarf.webservice.domain.post;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import com.giantdwarf.webservice.domain.BaseTimeEntity;
@@ -25,7 +26,7 @@ public class Posts extends BaseTimeEntity{
 	//@GeneratedValue: //원하는 키 생성 전략을 선택.(IDENTITY, SEQUENCE, TABLE, AUTO), 기본값은 AUTO로 mysql의 auto_increment와 같이 자동증가하는 정수값, 스프링부트2.0에선 옵션을 추가해야만 자동으로 증가
    
 	@Id					
-    @GeneratedValue		
+    @GeneratedValue(strategy = GenerationType.IDENTITY)		
     private Long id;	
 
 	//@Column: 기본값 외에 추가로변경이 필요할떄 사용, 문자열의경우 varchar(255)가 기본인데 사이즈를 늘리고 싶거나 타입을 text로 변경하고 싶은 경우에 사
